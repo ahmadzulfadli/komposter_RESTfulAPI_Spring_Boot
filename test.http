@@ -1,0 +1,29 @@
+### Create Data
+POST  http://localhost:8080/komposter/addData/temperatures
+Accept: application/json
+Content-Type: application/json
+
+{
+    "value": "38.3"
+}
+
+### Get Data
+GET http://localhost:8080/komposter/data/temperatures/f32dfab8-ba59-4e5d-a8db-ced02728cc6b
+Accept: application/json
+
+### Get All Data
+GET http://localhost:8080/komposter/data/temperatures
+Accept: application/json
+
+### Update Data
+PATCH http://localhost:8080/komposter/update/temperatures/f32dfab8-ba59-4e5d-a8db-ced02728cc6b
+Accept: application/json
+Content-Type: application/json
+
+{
+    "value": "35.6"
+}
+
+### Delete Data
+DELETE  http://localhost:8080/komposter/delete/temperatures/9c591b4f-4b25-4fee-b9fc-25ed57260931
+Accept: application/json
