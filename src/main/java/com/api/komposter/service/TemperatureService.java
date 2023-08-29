@@ -76,7 +76,7 @@ public class TemperatureService {
         return toTemperatureResponse(temperature);
     }
 
-    // UPDATE ---------------------------------------------------------------------
+    // DELETE ---------------------------------------------------------------------
     @Transactional
     public void deleteTemperature(String id){
         Temperature temperature = temperatureRepository.findById(id)

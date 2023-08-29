@@ -1,30 +1,59 @@
 package com.api.komposter.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 
-import com.api.komposter.entity.Moisture;
 import com.api.komposter.model.CreateMoistureRequest;
+import com.api.komposter.model.MoistureResponse;
+import com.api.komposter.model.WebResponse;
 import com.api.komposter.service.MoistureService;
 
 @RestController
 public class MoistureController {
     
+    private String sensor = "Moisture";
+
     @Autowired
     private MoistureService moistureService;
 
+    // CREATE -----------------------------------------------------------------------------------------
     @PostMapping(
         path = "/komposter/addData/moistures",
         produces = MediaType.APPLICATION_JSON_VALUE,
         consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<Moisture> addData(@RequestBody CreateMoistureRequest request){
-        Moisture creaMoisture =  moistureService.create(request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(creaMoisture);
+    public WebResponse<MoistureResponse> addData(@RequestBody CreateMoistureRequest request){
+        MoistureResponse createMoisture =  moistureService.create(request);
+        return WebResponse.<MoistureResponse>builder().sensor(sensor).data(createMoisture).build();
     }
+
+    // READ -----------------------------------------------------------------------------------------
+    @GetMapping(
+        path = "/komposter/data/moistures/{id}",
+        produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public WebResponse<MoistureResponse> getData(@PathVariable String id){
+        MoistureResponse moistureResponse = moistureService.getMoisture(id);
+        return WebResponse.<MoistureResponse>builder().sensor(sensor).data(moistureResponse).build();
+    }
+
+    @GetMapping(
+        path = "/komposter/data/moistures",
+        produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public WebResponse<List<MoistureResponse>> getAllData(){
+        List<MoistureResponse> moistureResponse = moistureService.getAllMoisture();
+        return WebResponse.<List<MoistureResponse>>builder().sensor(sensor).data(moistureResponse).build();
+    }
+
+    // UPDATE -------------------------------------------------------------------------------------------
+    
+    // DELETE -------------------------------------------------------------------------------------------
 }
