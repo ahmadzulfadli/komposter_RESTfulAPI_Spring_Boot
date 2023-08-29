@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PhMeterReponse {
+public class PhMeterResponse {
     
     private String id;
 

@@ -1,6 +1,3 @@
-# Komposter_RESTfulAPI_Spring_Boot
-**use java version 17**
-
 # Dokumentasi REST API Aplikasi Komposter
 
 Dokumentasi REST API Aplikasi Komposter. API ini memungkinkan pengguna untuk mengelola data terkait suhu, kelembaban, dan pH dalam sistem komposter.

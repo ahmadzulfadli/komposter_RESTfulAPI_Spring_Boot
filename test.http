@@ -1,14 +1,17 @@
+#=============================================================================================================
+#Temperature
+
 ### Create Data
 POST  http://localhost:8080/komposter/addData/temperatures
 Accept: application/json
 Content-Type: application/json
 
 {
-    "value": "38.3"
+    "value": "37.3"
 }
 
 ### Get Data
-GET http://localhost:8080/komposter/data/temperatures/f32dfab8-ba59-4e5d-a8db-ced02728cc6b
+GET http://localhost:8080/komposter/data/temperatures/b6eab927-b6a1-442d-8587-15be841dea4a
 Accept: application/json
 
 ### Get All Data
@@ -16,7 +19,7 @@ GET http://localhost:8080/komposter/data/temperatures
 Accept: application/json
 
 ### Update Data
-PATCH http://localhost:8080/komposter/update/temperatures/f32dfab8-ba59-4e5d-a8db-ced02728cc6b
+PATCH http://localhost:8080/komposter/update/temperatures/b6eab927-b6a1-442d-8587-15be841dea4a
 Accept: application/json
 Content-Type: application/json
 
@@ -25,5 +28,71 @@ Content-Type: application/json
 }
 
 ### Delete Data
-DELETE  http://localhost:8080/komposter/delete/temperatures/9c591b4f-4b25-4fee-b9fc-25ed57260931
+DELETE  http://localhost:8080/komposter/delete/temperatures/b6eab927-b6a1-442d-8587-15be841dea4a
+Accept: application/json
+
+#=============================================================================================================
+#Moisture
+
+### Create Data
+POST  http://localhost:8080/komposter/addData/moistures
+Accept: application/json
+Content-Type: application/json
+
+{
+    "value": "42.3"
+}
+
+### Get Data
+GET http://localhost:8080/komposter/data/moistures/974f6130-1998-4f0e-9c86-3645bfcd7b47
+Accept: application/json
+
+### Get All Data
+GET http://localhost:8080/komposter/data/moistures
+Accept: application/json
+
+### Update Data
+PATCH http://localhost:8080/komposter/update/moistures/974f6130-1998-4f0e-9c86-3645bfcd7b47
+Accept: application/json
+Content-Type: application/json
+
+{
+    "value": "45.6"
+}
+
+### Delete Data
+DELETE  http://localhost:8080/komposter/delete/moistures/043a1265-bd10-44a9-8a28-cc1fa32d12e5
+Accept: application/json
+
+#=============================================================================================================
+#PhMeter
+
+### Create Data
+POST  http://localhost:8080/komposter/addData/phMeters
+Accept: application/json
+Content-Type: application/json
+
+{
+    "value": "2.3"
+}
+
+### Get Data
+GET http://localhost:8080/komposter/data/phMeters/b021ce4b-bbff-44ac-ac90-5e6056483ae6
+Accept: application/json
+
+### Get All Data
+GET http://localhost:8080/komposter/data/phMeters
+Accept: application/json
+
+### Update Data
+PATCH http://localhost:8080/komposter/update/phMeters/b021ce4b-bbff-44ac-ac90-5e6056483ae6
+Accept: application/json
+Content-Type: application/json
+
+{
+    "value": "2.6"
+}
+
+### Delete Data
+DELETE  http://localhost:8080/komposter/delete/phMeters/b021ce4b-bbff-44ac-ac90-5e6056483ae6
 Accept: application/json

@@ -11,8 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.api.komposter.entity.PhMeter;
-import com.api.komposter.model.CreateMoistureRequest;
-import com.api.komposter.model.PhMeterReponse;
+import com.api.komposter.model.CreatePhMeterRequest;
+import com.api.komposter.model.PhMeterResponse;
 import com.api.komposter.model.UpdatePhMeterRequest;
 import com.api.komposter.repository.PhMeterRepository;
 
@@ -25,8 +25,8 @@ public class PhMeterService {
     @Autowired
     private ValidationService validationService;
 
-    private PhMeterReponse toPhMeterResponse(PhMeter phMeter){
-        return PhMeterReponse.builder()
+    private PhMeterResponse toPhMeterResponse(PhMeter phMeter){
+        return PhMeterResponse.builder()
         .id(phMeter.getId())
         .value(phMeter.getValue())
         .timestamp(phMeter.getTimestamp())
@@ -35,7 +35,7 @@ public class PhMeterService {
 
     // CREATE -------------------------------------------------------------------
     @Transactional
-    public PhMeterReponse create(CreateMoistureRequest request){
+    public PhMeterResponse create(CreatePhMeterRequest request){
         validationService.validate(request);
 
         PhMeter phMeter = new PhMeter();
@@ -49,7 +49,7 @@ public class PhMeterService {
 
     // READ ----------------------------------------------------------------------
     @Transactional(readOnly = true)
-    public PhMeterReponse getPhMeter(String id){
+    public PhMeterResponse getPhMeter(String id){
         PhMeter phMeter = phMeterRepository.findById(id)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Data not found"));
 
@@ -57,17 +57,18 @@ public class PhMeterService {
     }
 
     @Transactional(readOnly = true)
-    public List<PhMeterReponse> getAllPhMeter(){
+    public List<PhMeterResponse> getAllPhMeter(){
         List<PhMeter> phMeter = phMeterRepository.findAll();
         return phMeter.stream().map(this::toPhMeterResponse).toList();
     }
 
     // UPDATE ----------------------------------------------------------------------
-    public PhMeterReponse updatePhMeter(String id, UpdatePhMeterRequest request){
+    public PhMeterResponse updatePhMeter(String id, UpdatePhMeterRequest request){
         PhMeter phMeter = phMeterRepository.findById(id)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Data not found"));
 
         phMeter.setValue(request.getValue());
+        phMeterRepository.save(phMeter);
         return toPhMeterResponse(phMeter);
     }
 
